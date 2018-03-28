@@ -1,6 +1,6 @@
 import { GameEngine } from 'react-native-game-engine';
 import React, { PureComponent } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 const RADIUS = 20;
 
@@ -15,16 +15,27 @@ class Finger extends PureComponent {
 };
 
 class Player extends PureComponent {
+
+    constructor(props){
+        super(props);
+        this.state = {text: ''}
+    }
+
     render(){
-        let NAME = 'shit your name';
         return(
-            <Text style={{
+            <View style={{
                 padding: 10,
-                fontSize: 42,
                 left: this.props.position[0],
                 top: this.props.position[1]}}>
-                {NAME}
-            </Text>
+                <TextInput
+                    style={{height: 40}}
+                    placeholder="enter name"
+                    onChangeText={(text) => this.setState({text})}
+                    />
+                <Text style={{padding: 10, fontSize: 42}}>
+                    {this.state.text}
+                </Text>
+            </View>
         );
     }
 };
